@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Main_voc.dart';
 import 'voc.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
   @override
@@ -8,10 +10,12 @@ class MyApp extends StatelessWidget{
     // TODO: implement build
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Schyler',
         brightness: Brightness.light,
         primarySwatch: Colors.cyan,
       ),
       darkTheme: ThemeData(
+        fontFamily: 'Schyler',
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
@@ -27,6 +31,10 @@ class acentMin extends StatefulWidget{
 
 }
 class acentState extends State<acentMin>{
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
+  List<Color> _colors = [Colors.deepOrangeAccent,Colors.green];
+  List<double> _stops = [0.7,0.0];
   @override
   void initState() {
     super.initState();
@@ -37,95 +45,155 @@ class acentState extends State<acentMin>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      backgroundColor: Colors.cyan,
-      appBar: AppBar(title: Text("Acentos"),
-        backgroundColor: Colors.cyanAccent,
+      backgroundColor: Colors.lightBlueAccent,
+      appBar: AppBar(title: Text("M-Acentos",
+      style: TextStyle(fontFamily: 'Schyler',
+        fontSize: 40.0,),),
+        backgroundColor: Colors.cyan,
+        automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: ListView(
         children: <Widget>[
+      new Container(
+      padding: EdgeInsets.all(40.0),
+      child: new Column(
+        children: <Widget>[
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
-                onPressed: null,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => multi("Á")));
+                },
                 child: Text("Á",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 100.0,
                   ),),
                 color: Colors.blue,
               )
           ),
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
-                onPressed: null,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => multi("É")));
+                },
                 child: Text("É",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 100.0,
                   ),),
                 color: Colors.blue,
               )
           ),
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
-                onPressed: null,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => multi("Í")));
+                },
                 child: Text("Í",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 100.0,
                   ),),
                 color: Colors.blue,
               )
           ),
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
-                onPressed: null,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => multi("Ó")));
+                },
                 child: Text("Ó",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 100.0,
                   ),),
                 color: Colors.blue,
               )
           ),
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
-                onPressed: null,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => multi("Ú")));
+                },
                 child: Text("Ú",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 100.0,
                   ),),
                 color: Colors.blue,
               )
           ),
+          new Padding(padding: EdgeInsets.only(top: 30.0)),
           new Container(
-              padding: EdgeInsets.all(30.00),
-              width: buttonWidth,
-              height: buttonHigh,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: _colors,
+                  stops: _stops),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+              ),
+              width: 200,
+              height: 150,
               child: new MaterialButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
-                  Navigator.pop(context, MaterialPageRoute(
-                      builder: (context) => Main_voc()));
+                 // Navigator.pop(context, MaterialPageRoute(
+                //      builder: (context) => Main_voc()));
                 },
                 child: Text("Regresar",textAlign: TextAlign.center,
                   style: TextStyle(
-
+                    fontFamily: 'Schyler',
+                    fontSize: 40.0,
                   ),),
-                color: Colors.blue,
+                color: Colors.blueGrey,
               )
           ),
-
+          ],
+          ),
+          ),
         ],
       ),
 
