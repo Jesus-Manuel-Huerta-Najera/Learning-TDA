@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:tflite/tflite.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
   String text;
-  MyApp({this.text});
-
+  MyApp({this.text,this.audioPlayer,this.audioCache});
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -17,27 +22,43 @@ class MyApp extends StatelessWidget{
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: multi(this.text),
+      home: multi(this.text,this.audioPlayer,this.audioCache),
     );
   }
 
 }
 class multi extends StatefulWidget{
   String text;
-  multi(this.text);
+  multi(this.text,this.audioPlayer,this.audioCache);
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
-  _myHomePageState createState() => new _myHomePageState(this.text);
+  leter createState() => new leter(this.text,this.audioPlayer,this.audioCache);
 
 
 }
-class _myHomePageState extends State<multi>{
-  _myHomePageState(this.text);
+class leter extends State<multi>{
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
+  List _salidas;
+  File _Imagen;
+  bool _isLoading;
+  bool TEXTOS = true;
+  bool validator = true;
+  leter(this.text,this.audioPlayer,this.audioCache);
   String text;
   List<Color> _colors = [Colors.black54,Colors.black54];
   List<double> _stops = [0.0,0.7];
   @override
   void initState() {
     super.initState();
+    audioCache.play("indicacion_mezcla.mp3");
+    _isLoading =  true;
+    loadModel().then((value){
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -80,6 +101,9 @@ class _myHomePageState extends State<multi>{
                 child: new MaterialButton(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                   onPressed: () {
+                    TEXTOS = true;
+                    validator = true;
+                    pickImage();
 
                   },
                   child: Text("Imagen",
@@ -88,7 +112,7 @@ class _myHomePageState extends State<multi>{
                       fontSize: 20
                     ),
                   ),
-                  color: Colors.cyanAccent,
+                  color: Colors.cyan,
                 ),
               ),
               new Padding(padding: EdgeInsets.all(20.0)),
@@ -104,7 +128,9 @@ class _myHomePageState extends State<multi>{
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
 
                   onPressed: () {
-
+                  TEXTOS = false;
+                  validator = true;
+                  pickImage();
                   },
                   child: Text("Foto",
                     textAlign: TextAlign.center,
@@ -112,7 +138,7 @@ class _myHomePageState extends State<multi>{
                         fontSize: 25
                     ),
                   ),
-                  color: Colors.cyanAccent,
+                  color: Colors.cyan,
 
                 ),
               ),
@@ -125,5 +151,51 @@ class _myHomePageState extends State<multi>{
       ),
 
     );
+  }
+  pickImage() async {
+    if(TEXTOS == false){var imagen = await ImagePicker.pickImage(source: ImageSource.camera);
+    if(imagen == null){return null;
+    setState(() {
+      _isLoading = true;
+      _Imagen = imagen;
+    });}
+    clasificar(imagen);}
+    if(TEXTOS == true){var imagen = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if(imagen == null){return null;
+    setState(() {
+      _isLoading = true;
+      _Imagen = imagen;
+    });}
+    clasificar(imagen);}
+  }
+  clasificar(File image)async{
+    var output = await Tflite.runModelOnImage(path: image.path,
+    numResults: 5,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      _isLoading =  false;
+      _salidas = output;
+      print(_salidas);
+      if( _salidas[0]['label'] == text){
+        if(_salidas[0]['confidence'] > 0.8){print("excelente");}
+        else{print("mal");}
+
+      }
+      else{print("mal");}
+
+    });
+  }
+  loadModel() async{
+    await Tflite.loadModel(model: "assets/model_unquantminus.tflite",
+    labels: "assets/labelsminus.txt"
+    );
+  }
+  @override
+  void dispose(){
+    Tflite.close();
+    super.dispose();
   }
 }
