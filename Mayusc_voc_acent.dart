@@ -5,6 +5,9 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
+  MyApp({this.audioPlayer,this.audioCache});
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,18 +22,22 @@ class MyApp extends StatelessWidget{
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: acentMin(),
+      home: acentMin(this.audioPlayer,this.audioCache),
     );
   }
 
 }
 class acentMin extends StatefulWidget{
+  acentMin(this.audioPlayer,this.audioCache);
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
-  acentState createState() => new acentState();
+  acentState createState() => new acentState(this.audioPlayer,this.audioCache);
 
 
 }
 class acentState extends State<acentMin>{
+  acentState(this.audioPlayer,this.audioCache);
   AudioPlayer audioPlayer;
   AudioCache audioCache;
   List<Color> _colors = [Colors.deepOrangeAccent,Colors.green];
@@ -38,6 +45,8 @@ class acentState extends State<acentMin>{
   @override
   void initState() {
     super.initState();
+    audioPlayer.stop();
+    audioCache.play("mayusc_acento.mp3");
   }
   double buttonHigh = 50;
   double buttonWidth = 100;
@@ -71,7 +80,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Á")));
+                      builder: (context) => multi("Á",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Á",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -93,7 +102,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("É")));
+                      builder: (context) => multi("É",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("É",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -115,7 +124,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Í")));
+                      builder: (context) => multi("Í",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Í",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -137,7 +146,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Ó")));
+                      builder: (context) => multi("Ó",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Ó",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -159,7 +168,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Ú")));
+                      builder: (context) => multi("Ú",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Ú",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -180,8 +189,10 @@ class acentState extends State<acentMin>{
               child: new MaterialButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
-                 // Navigator.pop(context, MaterialPageRoute(
-                //      builder: (context) => Main_voc()));
+                  audioPlayer.stop();
+                  audioCache.play("indicacion_mezcla.mp3");
+                  Navigator.pop(context, MaterialPageRoute(
+                      builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Regresar",textAlign: TextAlign.center,
                   style: TextStyle(
