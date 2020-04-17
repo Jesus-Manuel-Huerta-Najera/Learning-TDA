@@ -5,6 +5,9 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
+  MyApp({this.audioPlayer,this.audioCache});
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,18 +22,23 @@ class MyApp extends StatelessWidget{
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: acent(),
+      home: acent(this.audioPlayer,this.audioCache),
     );
   }
 
 }
 class acent extends StatefulWidget{
+  acent(this.audioPlayer,this.audioCache);
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
+
   @override
-  acentState createState() => new acentState();
+  acentState createState() => new acentState(this.audioPlayer,this.audioCache);
 
 
 }
 class acentState extends State<acent>{
+  acentState(this.audioPlayer,this.audioCache);
   AudioPlayer audioPlayer;
   AudioCache audioCache;
   List<Color> _colors = [Colors.deepOrangeAccent,Colors.green];
@@ -38,6 +46,8 @@ class acentState extends State<acent>{
   @override
   void initState() {
     super.initState();
+    audioPlayer.stop();
+    audioCache.play("minusc_acento.mp3");
   }
   double buttonHigh = 50;
   double buttonWidth = 100;
@@ -73,7 +83,7 @@ class acentState extends State<acent>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("á")));
+                      builder: (context) => multi("á",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("á",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -95,7 +105,7 @@ class acentState extends State<acent>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("é")));
+                      builder: (context) => multi("é",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("é",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -117,7 +127,7 @@ class acentState extends State<acent>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("í")));
+                      builder: (context) => multi("í",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("í",
                   textAlign: TextAlign.center,
@@ -140,7 +150,7 @@ class acentState extends State<acent>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("ó")));
+                      builder: (context) => multi("ó",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("ó",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -162,7 +172,7 @@ class acentState extends State<acent>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("ú")));
+                      builder: (context) => multi("ú",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("ú",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -183,8 +193,10 @@ class acentState extends State<acent>{
               child: new MaterialButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
-                //  Navigator.pop(context, MaterialPageRoute(
-                  //    builder: (context) => Main_voc()));
+                  audioPlayer.stop();
+                  audioCache.play("indicacion_mezcla.mp3");
+                  Navigator.pop(context, MaterialPageRoute(
+                      builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Regresar",textAlign: TextAlign.center,
                   style: TextStyle(
