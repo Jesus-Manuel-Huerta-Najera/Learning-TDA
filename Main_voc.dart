@@ -92,7 +92,7 @@ class Main_vocales extends State<Main_voc>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => Mayus()));
+                      builder: (context) => Mayus(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("1.-MAYUSCULAS",
                   textAlign: TextAlign.center,
@@ -117,7 +117,7 @@ class Main_vocales extends State<Main_voc>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => minus()));
+                      builder: (context) => minus(this.audioPlayer,this.audioCache)));
                 },
                   child: Text("2.-minusculas",
                     textAlign: TextAlign.center,
@@ -142,7 +142,7 @@ class Main_vocales extends State<Main_voc>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => acentMin()));
+                      builder: (context) => acentMin(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("3.-MAYUSCULA con Acentos",
                   textAlign: TextAlign.center,
@@ -167,7 +167,7 @@ class Main_vocales extends State<Main_voc>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => acent()));
+                      builder: (context) => acent(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("4.-minuscula con Acentos",
                   textAlign: TextAlign.center,
