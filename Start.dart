@@ -96,7 +96,7 @@ class _myHomePageState extends State<start>{
                               fontSize: 35
                           ),
                         ),
-                        color: Colors.cyanAccent,
+                        color: Colors.cyan,
 
                       ),
                     ),
