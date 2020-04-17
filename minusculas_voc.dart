@@ -5,6 +5,9 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyAppss());
 class MyAppss extends StatelessWidget{
+  MyAppss({this.audioPlayer,this.audioCache});
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,18 +22,22 @@ class MyAppss extends StatelessWidget{
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: minus(),
+      home: minus(this.audioPlayer,this.audioCache),
     );
   }
 
 }
 class minus extends StatefulWidget{
+  minus(this.audioPlayer,this.audioCache);
+  AudioPlayer audioPlayer;
+  AudioCache audioCache;
   @override
-  minusState createState() => new minusState();
+  minusState createState() => new minusState(this.audioPlayer,this.audioCache);
 
 
 }
 class minusState extends State<minus>{
+  minusState(this.audioPlayer,this.audioCache);
   AudioPlayer audioPlayer;
   AudioCache audioCache;
   List<Color> _colors = [Colors.deepOrangeAccent,Colors.green];
@@ -38,6 +45,8 @@ class minusState extends State<minus>{
   @override
   void initState() {
     super.initState();
+    audioPlayer.stop();
+    audioCache.play("minusculas.mp3");
   }
   double buttonHigh = 50;
   double buttonWidth = 100;
@@ -71,7 +80,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("a")));
+                      builder: (context) => multi("a",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("a",
                   textAlign: TextAlign.center,
@@ -94,7 +103,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("e")));
+                      builder: (context) => multi("e",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("e",
                   textAlign: TextAlign.center,
@@ -117,7 +126,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("i")));
+                      builder: (context) => multi("i",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("i",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -138,7 +147,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("o")));
+                      builder: (context) => multi("o",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("o",
                   textAlign: TextAlign.center,
@@ -160,7 +169,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("u")));
+                      builder: (context) => multi("u",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("u",
                   textAlign: TextAlign.center,
@@ -181,8 +190,10 @@ class minusState extends State<minus>{
               child: new MaterialButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
-               //   Navigator.pop(context, MaterialPageRoute(
-                 //     builder: (context) => Main_voc()));
+                  audioPlayer.stop();
+                  audioCache.play("indicacion_mezcla.mp3");
+                  Navigator.pop(context, MaterialPageRoute(
+                     builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Regresar",
                   textAlign: TextAlign.center,
