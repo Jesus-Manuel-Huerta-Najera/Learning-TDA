@@ -52,6 +52,7 @@ class leter extends State<multi>{
   @override
   void initState() {
     super.initState();
+    audioPlayer.stop();
     audioCache.play("indicacion_mezcla.mp3");
     _isLoading =  true;
     loadModel().then((value){
@@ -180,11 +181,20 @@ class leter extends State<multi>{
       _salidas = output;
       print(_salidas);
       if( _salidas[0]['label'] == text){
-        if(_salidas[0]['confidence'] > 0.8){print("excelente");}
-        else{print("mal");}
+        if(_salidas[0]['confidence'] > 0.7){print("excelente");
+        audioPlayer.stop();
+        audioCache.play("felicitacion.mp3");}
+        else{print("mal");
+        audioPlayer.stop();
+        audioCache.play("error.mp3");
+        }
 
       }
-      else{print("mal");}
+
+      else{print("mal");
+      audioPlayer.stop();
+      audioCache.play("error.mp3");
+      }
 
     });
   }
