@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Main_voc.dart';
-import 'voc.dart';
+import 'voc_Macent.dart';
+import 'voc_U.dart';
+import 'Voc_O.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApp());
@@ -80,7 +82,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Á",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMacent("Á",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Á",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -102,7 +104,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("É",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMacent("É",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("É",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -124,7 +126,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Í",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMacent("Í",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Í",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -146,7 +148,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Ó",this.audioPlayer,this.audioCache)));
+                      builder: (context) => ooo("Ó",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Ó",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -168,7 +170,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("Ú",this.audioPlayer,this.audioCache)));
+                      builder: (context) => uuu("Ú",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("Ú",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -190,7 +192,7 @@ class acentState extends State<acentMin>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   audioPlayer.stop();
-                  audioCache.play("indicacion_mezcla.mp3");
+                  audioCache.play("temas.mp3");
                   Navigator.pop(context, MaterialPageRoute(
                       builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
