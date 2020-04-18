@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Main_voc.dart';
 import 'voc.dart';
+import 'voc_U.dart';
+import 'Voc_O.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyAppss());
@@ -147,7 +149,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("o",this.audioPlayer,this.audioCache)));
+                      builder: (context) => ooo("o",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("o",
                   textAlign: TextAlign.center,
@@ -169,7 +171,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("u",this.audioPlayer,this.audioCache)));
+                      builder: (context) => uuu("u",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("u",
                   textAlign: TextAlign.center,
@@ -191,7 +193,7 @@ class minusState extends State<minus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   audioPlayer.stop();
-                  audioCache.play("indicacion_mezcla.mp3");
+                  audioCache.play("temas.mp3");
                   Navigator.pop(context, MaterialPageRoute(
                      builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
