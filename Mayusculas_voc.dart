@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Main_voc.dart';
-import 'voc.dart';
+import 'voc_Mayu.dart';
+import 'voc_U.dart';
+import 'Voc_O.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(MyApps());
@@ -83,7 +85,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("A",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMayus("A",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("A",
                   textAlign: TextAlign.center,
@@ -107,7 +109,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("E",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMayus("E",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("E",
                   textAlign: TextAlign.center,
@@ -131,7 +133,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("I",this.audioPlayer,this.audioCache)));
+                      builder: (context) => multiMayus("I",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("I",
                   textAlign: TextAlign.center,
@@ -155,7 +157,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("O",this.audioPlayer,this.audioCache)));
+                      builder: (context) => ooo("O",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("O",
                   textAlign: TextAlign.center,
@@ -179,7 +181,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => multi("U",this.audioPlayer,this.audioCache)));
+                      builder: (context) => uuu("U",this.audioPlayer,this.audioCache)));
                 },
                 child: Text("U",textAlign: TextAlign.center,
                   style: TextStyle(
@@ -202,7 +204,7 @@ class MayusState extends State<Mayus>{
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
                 onPressed: (){
                   audioPlayer.stop();
-                  audioCache.play("indicacion_mezcla.mp3");
+                  audioCache.play("temas.mp3");
                   Navigator.pop(context, MaterialPageRoute(
                       builder: (context) => Main_voc(this.audioPlayer,this.audioCache)));
                 },
